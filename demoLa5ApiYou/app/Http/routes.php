@@ -1,16 +1,16 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+use Alaouy\Youtube\Youtube;
+
 
 Route::get('/', function () {
-    return view('welcome');
+    
+	$TEST_API_KEY = 'AIzaSyDDefsgXEZu57wYgABF7xEURClu4UAzyB8';
+    $youtube = new Youtube($TEST_API_KEY);
+
+    $vID = 'rie-hPVJ7Sw';
+    $video = $youtube->getVideoInfo($vID);
+
+	//$video = Youtube::getVideoInfo('rie-hPVJ7Sw');
+	return view( 'welcome', [ 'video' => $video ] );
 });
